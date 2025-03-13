@@ -46,12 +46,13 @@ def lambda_handler(event, context):
             }
 
         elif action == 'GET':
-            if 'name' not in event['data']:
+            data = event['data']
+            if 'name' not in data:
                 return {
                     'statusCode': 400,
                     'body': json.dumps({'message': 'Missing "name" key in event for get action.'})
                 }
-            key = {'name': event['name']}
+            key = {'name': data['name']}
             item = table.get_item(Key=key)
             if 'Item' in item:
                 return {
