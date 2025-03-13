@@ -90,20 +90,4 @@ resource "aws_dynamodb_table" "example" {
     name = "name"
     type = "S"
   }
-  attribute {
-    name = "age"
-    type = "N"
-  }
-  attribute {
-    name = "college"
-    type = "S"
-  }
-  attribute {
-    name = "major"
-    type = "S"
-  }
-  attribute {
-    name = "career"
-    type = "S"
-  }
 }
