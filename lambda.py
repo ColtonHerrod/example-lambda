@@ -46,7 +46,7 @@ def lambda_handler(event, context):
             }
 
         elif action == 'GET':
-            if 'name' not in event:
+            if 'name' not in event['data']:
                 return {
                     'statusCode': 400,
                     'body': json.dumps({'message': 'Missing "name" key in event for get action.'})
