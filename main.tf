@@ -9,7 +9,7 @@ terraform {
 
 # Configure the AWS Provider
 provider "aws" {
-  region = "us-east-1"  # Replace with your desired AWS region
+  region = "us-west-2"
 }
 
 data "archive_file" "lambda_zip" {
