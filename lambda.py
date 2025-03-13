@@ -42,7 +42,10 @@ def lambda_handler(event, context):
             table.put_item(Item=data)
             return {
                 'statusCode': 201,  # Created
-                'body': json.dumps({'message': 'Item persisted successfully.'})
+                'body': json.dumps({
+                    'message': 'Item persisted successfully.', 
+                    'body': data
+                })
             }
 
         elif action == 'GET':
