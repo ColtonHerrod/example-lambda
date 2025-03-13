@@ -85,9 +85,25 @@ resource "aws_iam_role_policy_attachment" "dynamodb_attachment" {
 resource "aws_dynamodb_table" "example" {
   name           = "example-lambda"
   billing_mode   = "PAY_PER_REQUEST"
-  hash_key       = "id"
+  hash_key       = "name"
   attribute {
-    name = "id"
+    name = "name"
+    type = "S"
+  }
+  attribute {
+    name = "age"
+    type = "N"
+  }
+  attribute {
+    name = "college"
+    type = "S"
+  }
+  attribute {
+    name = "major"
+    type = "S"
+  }
+  attribute {
+    name = "career"
     type = "S"
   }
 }

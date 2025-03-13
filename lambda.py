@@ -46,12 +46,12 @@ def lambda_handler(event, context):
             }
 
         elif action == 'GET':
-            if 'id' not in event:
+            if 'name' not in event:
                 return {
                     'statusCode': 400,
-                    'body': json.dumps({'message': 'Missing "id" key in event for get action.'})
+                    'body': json.dumps({'message': 'Missing "name" key in event for get action.'})
                 }
-            key = {'id': event['id']}  # Assuming 'id' is the partition key
+            key = {'name': event['name']}
             item = table.get_item(Key=key)
             if 'Item' in item:
                 return {
