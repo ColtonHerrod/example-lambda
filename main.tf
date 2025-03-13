@@ -20,7 +20,7 @@ data "archive_file" "lambda_zip" {
 
 resource "aws_lambda_function" "hello_world" {
   function_name    = "example-lambda"
-  handler          = "example.lambda_handler"  # File.Handler (important!)
+  handler          = "lambda.lambda_handler"  # File.Handler (important!)
   runtime           = "python3.12" # Or your desired runtime
   filename          = "lambda.zip"
   memory_size      = 128  # Adjust as needed
