@@ -44,7 +44,9 @@ def lambda_handler(event, context):
                 'statusCode': 201,  # Created
                 'body': json.dumps({
                     'message': 'Item persisted successfully.', 
-                    'body': data
+                    'name': data['name'],
+                    'career': data['career'],
+                    'college': data['college']
                 })
             }
 
