@@ -12,6 +12,12 @@ provider "aws" {
   region = "us-east-1"  # Replace with your desired AWS region
 }
 
+data "archive_file" "lambda_zip" {
+  type = "zip"
+  source_file = "lambda.py"
+  output_path = "lambda.zip"
+}
+
 resource "aws_lambda_function" "hello_world" {
   function_name    = "example-lambda"
   handler          = "example.lambda_handler"  # File.Handler (important!)
