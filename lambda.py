@@ -16,9 +16,7 @@ def lambda_handler(event, context):
 
     Args:
         event (dict): The event data passed to the Lambda function.  This should contain
-                      an 'action' key ('persist' or 'get').  For 'persist', it should also
-                      contain the data to be saved.  For 'get', it should contain the key
-                      to retrieve the item.
+                      an httpMethod key corresponding to HTTP request type.
         context (object): Lambda context object (not used in this example).
 
     Returns:
@@ -26,15 +24,15 @@ def lambda_handler(event, context):
     """
 
     try:
-        if 'action' not in event:
+        if 'httpMethod' not in event:
             return {
                 'statusCode': 400,
-                'body': json.dumps({'message': 'Missing "action" key in event.'})
+                'body': json.dumps({'message': 'Missing "httpMethod" key in event.'})
             }
 
-        action = event['action']
+        action = event['httpMethod']
 
-        if action == 'persist':
+        if action == 'PUT' or action == 'POST':
             if 'data' not in event:
                 return {
                     'statusCode': 400,
@@ -47,7 +45,7 @@ def lambda_handler(event, context):
                 'body': json.dumps({'message': 'Item persisted successfully.'})
             }
 
-        elif action == 'get':
+        elif action == 'GET':
             if 'id' not in event:
                 return {
                     'statusCode': 400,
@@ -69,7 +67,7 @@ def lambda_handler(event, context):
         else:
             return {
                 'statusCode': 400,
-                'body': json.dumps({'message': 'Invalid action.  Must be "persist" or "get".'})
+                'body': json.dumps({'message': 'Invalid action.  Must be "PUT", "POST", or "GET".'})
             }
 
     except Exception as e:

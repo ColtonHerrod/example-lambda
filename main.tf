@@ -26,6 +26,12 @@ resource "aws_lambda_function" "hello_world" {
   memory_size      = 128  # Adjust as needed
   timeout          = 30  # Adjust as needed (seconds)
   role = aws_iam_role.lambda_dynamodb_role.arn
+
+  environment {
+    variables = {
+      DYNAMODB_TABLE_NAME = aws_dynamodb_table.example.name
+    }
+  }
 }
 
 resource "aws_iam_role" "lambda_dynamodb_role" {
